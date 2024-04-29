@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% include "includes/alerts.html" %}
+
+<div class="offset-2 col-sm-8">
+
+    <h3 class="text-white my-5">SignUp Form</h3>
+
+    <form action="{% url "signUp" %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            {{field.label_tag}} {{field}} <small class="text-warning">{{field.errors|striptags}}</small>
+        </div>
+        {% endfor %}
+
+        <input type="submit" value="signUp", class='btn btn-primary'>
+
+    </form>
+    {% if messages %}
+    {% for message in messages %}
+    <p {% if message.tags %}class='alter alert-{{message.tags}}'{% endif %}></p>
+    {% endfor %}
+    {% endif %}
+
+    <ul class="errorlist">
+        {% for field in form %}
+        {% if field.errors %}
+        {% for error in field.errors %}
+        <li style="color: red;">{{error}}</li>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+        <div style="color: red;">{{form.non_field_errors}}</div>
+    </ul>
+
+</div>
+
+
+{% endblock content %}

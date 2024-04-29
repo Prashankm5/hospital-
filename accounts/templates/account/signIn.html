@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+{% include "includes/alerts.html" %}
+
+<form action="{% url "signIn" %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    {{form.email.label_tag}} {{form.email}}
+    </div>
+
+    <div class="form-group">
+    {{form.password.label_tag}} {{form.password}}
+    </div>
+
+    <input type="submit" value="SignIn">
+
+</form>
+
+<div>
+    
+        {% for field in form %}
+        {% if field.errors %}
+        {% for error in field.errors %}
+        <li style="color: red;">{{error}}</li>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    
+        
+    
+</div>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/alerts.html" %}
+
+<div class="row">
+    <div class="col-lg-5 col-md-9 col-sm-12 col-xs-12">
+        <div class="user-dashboard loader-holder">
+            <div class="user-holder">
+                <h4 class="text-uppercase">Pacient's Dashboard</h4>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2 ">Profile Picture :  {% if user.profile_picture %}
+        <img class="img-thumbnail profile" src="{{user.profile_picture.url}}" alt="Profile Picture">
+        {% else %}
+        <img class="img-thumbnail" src="{% static 'images/avatar-01.png' %}" alt="Profile Picture">
+        {% endif %}
+    </div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">Name :  {{ user.first_name }} {{ user.last_name }}</div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">Username :  {{ user.username }}</div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">Email :  {{ user.email }}</div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">Address : {{ user.adress_line1 }}</div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">City : {{ user.city }}</div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">State : {{ user.state }}</div><br><br>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 offset-1 mt-2">Pin Code : {{ user.zip_code }}</div><br><br>
+</div>
+
+{% endblock content %}
+
+
